@@ -1,0 +1,24 @@
+package com.example.projetoahoybackend.model;
+
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import java.util.Date;
+import java.util.List;
+
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+@Getter
+@Setter
+public class Agente {
+    @XmlElement
+    public int codigo;
+    @XmlElement
+    public Date data;
+    @XmlElement
+    public List<Regiao> regiao;
+}
