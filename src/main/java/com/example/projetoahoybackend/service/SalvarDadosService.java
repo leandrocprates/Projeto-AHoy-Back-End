@@ -56,12 +56,14 @@ public class SalvarDadosService {
     public void processarArquivo(MultipartFile file){
 
         System.out.println("==== Iniciando metodo processararquivo ====");
-        System.out.println("Nome arquivo : "+ file.getOriginalFilename());
-        System.out.println("Tamanho arquivo : "+ file.getSize());
-        System.out.println("ContentType : "+ file.getContentType());
+        //System.out.println("Nome arquivo : "+ file.getOriginalFilename());
 
         try{
             Agentes agentes = arquivoConverter.converterArquivoXmlToObject(file);
+            agentes.getAgente().forEach(agente -> {
+                System.out.println("Codigo Agente: " + agente.getCodigo());
+            });
+
             ArrayList<AgenteEntity> listaAgente =  mapearObjetosToDomain.mapearObjetoToDatabase(agentes);
             salvarDadosArquivoDomain(file,listaAgente);
 
