@@ -1,9 +1,6 @@
 package com.example.projetoahoybackend.mapper;
 
-import com.example.projetoahoybackend.domain.AgenteEntity;
-import com.example.projetoahoybackend.domain.CompraEntity;
 import com.example.projetoahoybackend.domain.RegiaoEntity;
-import com.example.projetoahoybackend.model.Agente;
 import com.example.projetoahoybackend.model.Regiao;
 import org.modelmapper.AbstractConverter;
 import org.modelmapper.Converter;
@@ -23,6 +20,9 @@ public class RegiaoMapper {
     @Autowired
     CompraMapper compraMapper ;
 
+    @Autowired
+    GeracaoMapper geracaoMapper ;
+
     @Bean
     public ModelMapper regiaoModelMapper(){
         ModelMapper regiaoModelMapper = new ModelMapper();
@@ -32,6 +32,7 @@ public class RegiaoMapper {
             protected void configure() {
                 map().setSigla(source.getSigla());
                 using(compraMapper.converterListCompraToCompraEntity).map(source.getCompra()).setCompras(null);
+                using(geracaoMapper.converterListGeracaoToGeracaoEntity).map(source.getGeracao()).setGeracoes(null);
             }
         };
         regiaoModelMapper.addMappings(regiaoToRegiaoEntity);

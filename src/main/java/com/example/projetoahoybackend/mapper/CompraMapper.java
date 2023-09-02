@@ -1,12 +1,9 @@
 package com.example.projetoahoybackend.mapper;
 
 import com.example.projetoahoybackend.domain.CompraEntity;
-import com.example.projetoahoybackend.domain.RegiaoEntity;
 import com.example.projetoahoybackend.model.Compra;
-import com.example.projetoahoybackend.model.Regiao;
 import org.modelmapper.AbstractConverter;
 import org.modelmapper.Converter;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
