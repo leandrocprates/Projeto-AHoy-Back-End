@@ -23,6 +23,9 @@ public class RegiaoMapper {
     @Autowired
     GeracaoMapper geracaoMapper ;
 
+    @Autowired
+    PrecoMedioMapper precoMedioMapper ;
+
     @Bean
     public ModelMapper regiaoModelMapper(){
         ModelMapper regiaoModelMapper = new ModelMapper();
@@ -33,6 +36,7 @@ public class RegiaoMapper {
                 map().setSigla(source.getSigla());
                 using(compraMapper.converterListCompraToCompraEntity).map(source.getCompra()).setCompras(null);
                 using(geracaoMapper.converterListGeracaoToGeracaoEntity).map(source.getGeracao()).setGeracoes(null);
+                using(precoMedioMapper.converterListPrecoMedioToPrecoMedioEntity).map(source.getPrecoMedio()).setPrecosMedios(null);
             }
         };
         regiaoModelMapper.addMappings(regiaoToRegiaoEntity);

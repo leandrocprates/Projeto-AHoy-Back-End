@@ -14,7 +14,6 @@ public class AgenteMapper {
     @Autowired
     RegiaoMapper regiaoMapper ;
 
-
     @Bean
     public ModelMapper agenteModelMapper(){
         ModelMapper agenteModelMapper = new ModelMapper();
