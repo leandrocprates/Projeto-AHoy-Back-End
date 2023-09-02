@@ -1,6 +1,7 @@
 package com.example.projetoahoybackend.mapper;
 
 import com.example.projetoahoybackend.domain.AgenteEntity;
+import com.example.projetoahoybackend.domain.CompraEntity;
 import com.example.projetoahoybackend.domain.RegiaoEntity;
 import com.example.projetoahoybackend.model.Agente;
 import com.example.projetoahoybackend.model.Regiao;
@@ -8,6 +9,7 @@ import org.modelmapper.AbstractConverter;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +20,8 @@ import java.util.List;
 public class RegiaoMapper {
 
 
+    @Autowired
+    CompraMapper compraMapper ;
 
     @Bean
     public ModelMapper regiaoModelMapper(){
@@ -27,7 +31,7 @@ public class RegiaoMapper {
             @Override
             protected void configure() {
                 map().setSigla(source.getSigla());
-                //using(regiaoMapper.converterListRegioes).map(source.getRegiao()).setRegioes(null);
+                using(compraMapper.converterListCompraToCompraEntity).map(source.getCompra()).setCompras(null);
             }
         };
         regiaoModelMapper.addMappings(regiaoToRegiaoEntity);
