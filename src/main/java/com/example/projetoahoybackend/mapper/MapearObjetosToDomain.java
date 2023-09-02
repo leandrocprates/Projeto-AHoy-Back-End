@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -20,15 +21,14 @@ public class MapearObjetosToDomain {
     @Qualifier("agenteModelMapper")
     ModelMapper agenteModelMapper ;
 
-    public void mapearObjetoToDatabase(Agentes agentes){
+    public ArrayList<AgenteEntity> mapearObjetoToDatabase(Agentes agentes){
 
-        AgenteEntity agenteEntityfora = null;
-        agentes.getAgente().stream().forEach(agente -> {
+        ArrayList<AgenteEntity> listAgentes = new ArrayList<AgenteEntity>();
+        agentes.getAgente().forEach(agente -> {
             AgenteEntity agenteEntity = agenteModelMapper.map(agente,AgenteEntity.class);
-            System.out.println(agenteEntity.getCodigo());
+            listAgentes.add(agenteEntity);
         });
-
-        return ;
+        return listAgentes;
     }
 
 }

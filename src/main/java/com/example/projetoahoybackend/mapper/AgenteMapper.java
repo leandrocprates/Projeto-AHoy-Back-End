@@ -2,11 +2,16 @@ package com.example.projetoahoybackend.mapper;
 
 import com.example.projetoahoybackend.domain.AgenteEntity;
 import com.example.projetoahoybackend.model.Agente;
+import org.modelmapper.AbstractConverter;
+import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class AgenteMapper {
@@ -29,6 +34,23 @@ public class AgenteMapper {
         agenteModelMapper.addMappings(agenteToAgenteEntity);
         return agenteModelMapper ;
     }
+
+
+    public Converter<List<Agente>,List<AgenteEntity>> converterListAgenteToAgenteEntity = new AbstractConverter<List<Agente>,List<AgenteEntity>>() {
+
+        @Override
+        protected List<AgenteEntity> convert(List<Agente> agenteModel) {
+            ModelMapper  agenteModelMapper = agenteModelMapper() ;
+            ArrayList<AgenteEntity> arrayAgenteEntity = new ArrayList<>();
+
+            for (Agente agente: agenteModel){
+                AgenteEntity agenteEntity = agenteModelMapper.map(agente,AgenteEntity.class);
+                arrayAgenteEntity.add(agenteEntity);
+            }
+            return arrayAgenteEntity;
+        }
+    };
+
 
 
 
