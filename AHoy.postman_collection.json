@@ -1,0 +1,178 @@
+{
+	"info": {
+		"_postman_id": "99f09b4b-db8e-4564-9dc4-793754ce7a16",
+		"name": "AHoy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/uploadarquivo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/W10/Desktop/codigo_fonte/Projeto-AHOY/exemplo_01.xml"
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "default",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/uploadarquivo",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"uploadarquivo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/uploadmultiplosarquivos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "files",
+							"type": "file",
+							"src": "/C:/Users/W10/Desktop/codigo_fonte/Projeto-AHOY/exemplo_03.xml",
+							"disabled": true
+						},
+						{
+							"key": "files",
+							"type": "file",
+							"src": "/C:/Users/W10/Desktop/codigo_fonte/Projeto-AHOY/exemplo_01.xml"
+						},
+						{
+							"key": "files",
+							"type": "file",
+							"src": "/C:/Users/W10/Desktop/codigo_fonte/Projeto-AHOY/exemplo_02.xml"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/uploadmultiplosarquivos",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"uploadmultiplosarquivos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/buscadadoscomprasigla?sigla=SE",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/buscadadoscomprasigla?sigla=SE",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"buscadadoscomprasigla"
+					],
+					"query": [
+						{
+							"key": "sigla",
+							"value": "SE"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/buscadadosgeracaosigla?sigla=SE",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/buscadadosgeracaosigla?sigla=SE",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"buscadadosgeracaosigla"
+					],
+					"query": [
+						{
+							"key": "sigla",
+							"value": "SE"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/buscadadosprecomediosigla?sigla=SE",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/buscadadosprecomediosigla?sigla=SE",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"buscadadosprecomediosigla"
+					],
+					"query": [
+						{
+							"key": "sigla",
+							"value": "SE"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/buscadaconsolidadossigla?sigla=SE",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/buscadaconsolidadossigla?sigla=SE",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"buscadaconsolidadossigla"
+					],
+					"query": [
+						{
+							"key": "sigla",
+							"value": "SE"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
