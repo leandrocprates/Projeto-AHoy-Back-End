@@ -1,0 +1,20 @@
+version: '3.9'
+services:
+  aplicacao:
+    image: lprates/aplicacao-ahoy-back
+    container_name: aplicacao-ahoy-back
+    ports:
+      - 8080:8080
+    environment:
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_HOST: mysql
+
+networks:
+  default:
+    driver: bridge  
+    name : backend
+
+#docker-compose -f docker-compose-aplicacao.yml up -d
+
+
