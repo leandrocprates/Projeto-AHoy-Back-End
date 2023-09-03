@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class BuscaController {
@@ -33,6 +35,10 @@ public class BuscaController {
         return new ResponseEntity<>(buscaDadosService.buscarDadosConsolidadosDePrecoMedioBySigla(sigla), HttpStatus.OK) ;
     }
 
+    @GetMapping(value="/buscadaconsolidadossigla")
+    public ResponseEntity<List<BuscaVO>> buscarDadosConsolidadosPorRegiao(@RequestParam(value = "sigla") String sigla){
+        return new ResponseEntity<>(buscaDadosService.buscarDadosConsolidadosBySigla(sigla), HttpStatus.OK) ;
+    }
 
 
 }

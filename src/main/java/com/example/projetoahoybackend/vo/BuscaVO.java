@@ -8,6 +8,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class BuscaVO {
+    public String tipo;
     public String sigla ;
     public Double total ;
 }
