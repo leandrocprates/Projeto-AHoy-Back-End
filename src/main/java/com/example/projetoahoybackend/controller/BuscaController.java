@@ -13,14 +13,24 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class BuscaController {
 
-
     @Autowired
     BuscaDadosService buscaDadosService ;
 
-    @GetMapping(value="/buscadadossigla")
-    public ResponseEntity<BuscaVO> buscarDadosPorRegiao(@RequestParam(value = "sigla") String sigla){
-        return new ResponseEntity<>(buscaDadosService.buscarDadosConsolidados(sigla), HttpStatus.OK) ;
+    @GetMapping(value="/buscadadoscomprasigla")
+    public ResponseEntity<BuscaVO> buscarDadosCompraPorRegiao(@RequestParam(value = "sigla") String sigla){
+        return new ResponseEntity<>(buscaDadosService.buscarDadosConsolidadosDeCompraBySigla(sigla), HttpStatus.OK) ;
     }
+
+    @GetMapping(value="/buscadadosgeracaosigla")
+    public ResponseEntity<BuscaVO> buscarDadosGeracaoPorRegiao(@RequestParam(value = "sigla") String sigla){
+        return new ResponseEntity<>(buscaDadosService.buscarDadosConsolidadosDeGeracaoBySigla(sigla), HttpStatus.OK) ;
+    }
+
+    @GetMapping(value="/buscadadosprecomediosigla")
+    public ResponseEntity<BuscaVO> buscarDadosPrecoMedioPorRegiao(@RequestParam(value = "sigla") String sigla){
+        return new ResponseEntity<>(buscaDadosService.buscarDadosConsolidadosDePrecoMedioBySigla(sigla), HttpStatus.OK) ;
+    }
+
 
 
 }

@@ -12,10 +12,23 @@ public class BuscaDadosService {
     @Autowired
     RegiaoEntityRepository regiaoEntityRepository ;
 
-    public BuscaVO buscarDadosConsolidados(String sigla ){
-        Double valor = regiaoEntityRepository.findDadosConsolidadosBySigla(sigla);
+    public BuscaVO buscarDadosConsolidadosDeCompraBySigla(String sigla ){
+        Double valor = regiaoEntityRepository.findDadosConsolidadosDeCompraBySigla(sigla);
         BuscaVO buscaVO = new BuscaVO(sigla,valor);
         return buscaVO ;
     }
+
+    public BuscaVO buscarDadosConsolidadosDeGeracaoBySigla(String sigla ){
+        Double valor = regiaoEntityRepository.findDadosConsolidadosGeracaoBySigla(sigla);
+        BuscaVO buscaVO = new BuscaVO(sigla,valor);
+        return buscaVO ;
+    }
+
+    public BuscaVO buscarDadosConsolidadosDePrecoMedioBySigla(String sigla ){
+        Double valor = regiaoEntityRepository.findDadosConsolidadosPrecoMedioBySigla(sigla);
+        BuscaVO buscaVO = new BuscaVO(sigla,valor);
+        return buscaVO ;
+    }
+
 
 }

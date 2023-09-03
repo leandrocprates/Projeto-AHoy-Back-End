@@ -20,7 +20,17 @@ WHERE   re.sigla = 'SE' ### AND re.id = 9
 
 
 SELECT SUM(co.valor) valorA  FROM Regiao re INNER JOIN Compra co ON re.id = co.id_regiao 
-WHERE re.sigla = :sigla
+WHERE re.sigla = 'SE'
+
+
+SELECT SUM(ge.valor) valorA  FROM Regiao re INNER JOIN Geracao ge ON re.id = ge.id_regiao 
+WHERE re.sigla = 'SE'
+
+
+
+SELECT SUM(pe.valor) valorA  FROM Regiao re INNER JOIN Preco_Medio pe ON re.id = pe.id_regiao 
+WHERE re.sigla = 'SE'
+
 
 
 
