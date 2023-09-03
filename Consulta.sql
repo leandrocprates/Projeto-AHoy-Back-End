@@ -19,6 +19,10 @@ WHERE   re.sigla = 'SE' ### AND re.id = 9
 
 
 
+SELECT SUM(co.valor) valorA  FROM Regiao re INNER JOIN Compra co ON re.id = co.id_regiao 
+WHERE re.sigla = :sigla
+
+
 
 
 
