@@ -13,6 +13,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toList;
 
 @Service
 public class SalvarDadosService {
@@ -76,42 +82,66 @@ public class SalvarDadosService {
 
     }
 
-    public void salvarDadosArquivoDomain(MultipartFile file, ArrayList<AgenteEntity> listaAgente ){
+    public void salvarDadosArquivoDomain(MultipartFile file, ArrayList<AgenteEntity> listaAgente ) {
         ArquivoEntity arquivoEntity = new ArquivoEntity();
         arquivoEntity.setNome(file.getOriginalFilename());
         arquivoEntity.setAgentes(listaAgente);
 
-        ArquivoEntity arquivoEntitySalvo = arquivoEntityRepository.save(arquivoEntity) ;
-        arquivoEntity.getAgentes().forEach(agenteEntity -> {
-            agenteEntity.setArquivo(arquivoEntitySalvo);
-            AgenteEntity agenteEntitySalvo = agenteEntityRepository.save(agenteEntity);
+        long start = System.currentTimeMillis();
 
-            agenteEntity.getRegioes().forEach(regiaoEntity -> {
-                regiaoEntity.setAgente(agenteEntitySalvo);
-                RegiaoEntity regiaoEntitySalvo = regiaoEntityRepository.save(regiaoEntity);
+        ArquivoEntity arquivoEntitySalvo = arquivoEntityRepository.save(arquivoEntity);
 
-                regiaoEntity.getCompras().forEach(compraEntity -> {
-                    compraEntity.setRegiao(regiaoEntitySalvo);
-                    compraEntityRepository.save(compraEntity);
+        //criar threads para executar em paralelo
+
+        Executor executor = Executors.newFixedThreadPool(30);
+        var futureAgentes = arquivoEntity.getAgentes().stream()
+                .map(agenteEntity -> CompletableFuture.runAsync(
+                        () -> processarAgentes(agenteEntity, arquivoEntitySalvo), executor)
+                ).collect(toList());
+
+        var categories = futureAgentes.stream()
+                .map(CompletableFuture::join)
+                .collect(toList());
+
+        long end = System.currentTimeMillis();
+        System.out.printf("The operation took %s ms%n", end - start);
+
+
+    }
+
+    public void processarAgentes(AgenteEntity agenteEntity,ArquivoEntity arquivoEntitySalvo){
+
+            //arquivoEntity.getAgentes().forEach(agenteEntity -> {
+                agenteEntity.setArquivo(arquivoEntitySalvo);
+                AgenteEntity agenteEntitySalvo = agenteEntityRepository.save(agenteEntity);
+
+                agenteEntity.getRegioes().forEach(regiaoEntity -> {
+                    regiaoEntity.setAgente(agenteEntitySalvo);
+                    RegiaoEntity regiaoEntitySalvo = regiaoEntityRepository.save(regiaoEntity);
+
+                    regiaoEntity.getCompras().forEach(compraEntity -> {
+                        compraEntity.setRegiao(regiaoEntitySalvo);
+                        compraEntityRepository.save(compraEntity);
+                    });
+
+                    regiaoEntity.getGeracoes().forEach(geracaoEntity -> {
+                        geracaoEntity.setRegiao(regiaoEntitySalvo);
+                        geracaoEntityRepository.save(geracaoEntity);
+                    });
+
+                    regiaoEntity.getPrecosMedios().forEach(precoMedioEntity -> {
+                        precoMedioEntity.setRegiao(regiaoEntitySalvo);
+                        precoMedioEntityRepository.save(precoMedioEntity);
+                    });
+
                 });
 
-                regiaoEntity.getGeracoes().forEach(geracaoEntity -> {
-                    geracaoEntity.setRegiao(regiaoEntitySalvo);
-                    geracaoEntityRepository.save(geracaoEntity);
-                });
-
-                regiaoEntity.getPrecosMedios().forEach(precoMedioEntity -> {
-                    precoMedioEntity.setRegiao(regiaoEntitySalvo);
-                    precoMedioEntityRepository.save(precoMedioEntity);
-                });
-
-            });
-
-        });
+            //});
 
 
 
     }
+
 
 
 }
