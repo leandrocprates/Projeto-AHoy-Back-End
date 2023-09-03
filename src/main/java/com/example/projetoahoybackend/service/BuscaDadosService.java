@@ -1,6 +1,6 @@
 package com.example.projetoahoybackend.service;
 
-import com.example.projetoahoybackend.BuscaVO;
+import com.example.projetoahoybackend.vo.BuscaVO;
 import com.example.projetoahoybackend.repository.RegiaoEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

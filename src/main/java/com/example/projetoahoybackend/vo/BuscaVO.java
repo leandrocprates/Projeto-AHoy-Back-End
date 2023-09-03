@@ -1,4 +1,4 @@
-package com.example.projetoahoybackend;
+package com.example.projetoahoybackend.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,7 +1,7 @@
 package com.example.projetoahoybackend.controller;
 
 
-import com.example.projetoahoybackend.BuscaVO;
+import com.example.projetoahoybackend.vo.BuscaVO;
 import com.example.projetoahoybackend.service.BuscaDadosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
