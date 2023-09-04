@@ -22,5 +22,5 @@ Passo a passa da geração :
 4 - docker-compose -f docker-compose-aplicacao.yml up -d
 
 
-O arquivo *MakeFile* automatiza ainda mais esse processo executando o comando :
+O arquivo *MakeFile* automatiza ainda mais esse processo executando todos os comandos acima :
 **make run** para subir o backend .
